@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .models import Charity # Import the model
 from .serializers import CharitySerializer
 from django.shortcuts import get_object_or_404 # method that finds a single object or raises a 404 exception
@@ -7,6 +8,9 @@ from django.shortcuts import get_object_or_404 # method that finds a single obje
 # Path associated with this class: /api/charities
 # Methods accepted: GET, POST
 class CharityListView(APIView):
+    # Permissions
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     # Index
     def get(self, request):
         charities = Charity.objects.all() # all() returns all objects in the table related to the model used
@@ -31,6 +35,9 @@ class CharityListView(APIView):
 # Path associated with this class: /api/charities/:pk
 # Methods accepted: GET, PUT, DELETE
 class CharityDetailView(APIView):
+    # Permissions
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     # Show
     def get(self, request, pk):
         charity = get_object_or_404(Charity, pk=pk)

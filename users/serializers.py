@@ -1,6 +1,8 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import User
 from django.contrib.auth import password_validation
+
 
 class UserSerializer(serializers.ModelSerializer):
     # Define fields as write only
@@ -22,4 +24,25 @@ class UserSerializer(serializers.ModelSerializer):
         return data # Always return the validated data after doing your checks
 
     def create(self, validated_data):
+        validated_data.pop('password_confirmation') # Remove password confirmation to prevent an error with unexpected field
         return User.objects.create_user(**validated_data)
+    
+
+
+# * TOKEN SERIALIZER 
+
+
+class CustomTokenSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Customise the payload (claims)
+        token['user'] = {
+            'id': user.id,
+            'username': user.username,
+            'location': user.location
+        }
+
+        # Return the modified token
+        return token
