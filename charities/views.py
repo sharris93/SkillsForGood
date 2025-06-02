@@ -1,11 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Charity # Import the model
+from .models import Charity
 from .serializers import CharitySerializer
-from django.shortcuts import get_object_or_404 # method that finds a single object or raises a 404 exception
+from django.shortcuts import get_object_or_404
 
-# Path associated with this class: /api/charities
+# Path associated with this class: /api/charities/
 # Methods accepted: GET, POST
 class CharityListView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -25,10 +25,9 @@ class CharityListView(APIView):
 
 
 
-# Path associated with this class: /api/charities/:pk
+# Path associated with this class: /api/charities/:pk/
 # Methods accepted: GET, PUT, DELETE
 class CharityDetailView(APIView):
-    # Permissions
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     # Show
@@ -36,7 +35,6 @@ class CharityDetailView(APIView):
         charity = get_object_or_404(Charity, pk=pk)
         serialized_charity = CharitySerializer(charity)
         return Response(serialized_charity.data)
-
 
     # Update
     def put(self, request, pk):
