@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'users',
     'charities',
-    'opportunities'
+    'opportunities',
+    'skills'
 ]
 
 SIMPLE_JWT = {
