@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from utils.permissions import IsOwnerOrReadOnly
 from .models import Charity
-from .serializers import CharitySerializer
+from .serializers import CharitySerializer, PopulatedCharitySerializer
 from django.shortcuts import get_object_or_404
 
 # Path associated with this class: /api/charities/
@@ -18,6 +19,7 @@ class CharityListView(APIView):
 
     # Create
     def post(self, request):
+        request.data['owner'] = request.user.id # This line takes the authenticated user's id and provides it as the owner on the request body
         serialized_charity = CharitySerializer(data=request.data)
         serialized_charity.is_valid(raise_exception=True)
         serialized_charity.save()
@@ -28,17 +30,21 @@ class CharityListView(APIView):
 # Path associated with this class: /api/charities/:pk/
 # Methods accepted: GET, PUT, DELETE
 class CharityDetailView(APIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     # Show
     def get(self, request, pk):
         charity = get_object_or_404(Charity, pk=pk)
-        serialized_charity = CharitySerializer(charity)
+        serialized_charity = PopulatedCharitySerializer(charity)
         return Response(serialized_charity.data)
 
     # Update
     def put(self, request, pk):
         charity = get_object_or_404(Charity, pk=pk)
+        
+        # Once charity object is found, check ownership, raising PermissionDenied if we don't get a match
+        self.check_object_permissions(request, charity)
+        
         serialized_charity = CharitySerializer(charity, data=request.data, partial=True)
         serialized_charity.is_valid(raise_exception=True)
         serialized_charity.save()
@@ -47,5 +53,9 @@ class CharityDetailView(APIView):
     # Delete
     def delete(self, request, pk):
         charity = get_object_or_404(Charity, pk=pk)
+
+        # Once charity object is found, check ownership, raising PermissionDenied if we don't get a match
+        self.check_object_permissions(request, charity)
+        
         charity.delete()
         return Response(status=204)

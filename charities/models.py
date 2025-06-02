@@ -1,6 +1,11 @@
 from django.db import models
 
 class Charity(models.Model):
+    owner = models.ForeignKey(
+        to="users.User", # The model this id is related to
+        related_name="charities", # How we will populate this charity on the foreign model
+        on_delete=models.CASCADE # delete this object if the relation is deleted
+    )
     name = models.CharField(max_length=255)
     mission_statement = models.TextField(max_length=2000)
     website_url = models.URLField()
