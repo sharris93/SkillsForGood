@@ -12,6 +12,10 @@ class Opportunity(models.Model):
     location = models.CharField(max_length=100)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    skills_required = models.ManyToManyField(
+        to="skills.Skill",
+        related_name="opportunities"
+    )
 
     def __str__(self):
         return self.title
