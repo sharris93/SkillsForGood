@@ -11,3 +11,15 @@ class IsOwnerOrReadOnly(BasePermission):
         
         # If NOT a GET request, then check the user is the owner of the object
         return request.user == obj.owner
+    
+
+class IsAdminOrReadOnly(BasePermission):
+
+    def has_permission(self, request, view):
+        
+        # GET requests are allowed for everyone
+        if request.method in SAFE_METHODS:
+            return True
+
+        # POST, PUT, PATCH, DELETE requires admin privileges
+        return request.user.is_staff
