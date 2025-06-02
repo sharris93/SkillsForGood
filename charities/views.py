@@ -8,26 +8,19 @@ from django.shortcuts import get_object_or_404 # method that finds a single obje
 # Path associated with this class: /api/charities
 # Methods accepted: GET, POST
 class CharityListView(APIView):
-    # Permissions
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     # Index
     def get(self, request):
-        charities = Charity.objects.all() # all() returns all objects in the table related to the model used
+        charities = Charity.objects.all()
         serialized_charities = CharitySerializer(charities, many=True)
         return Response(serialized_charities.data)
 
     # Create
     def post(self, request):
-        # When we want to deserialize (create or update an object) we pass the data through on the data key of the serializer
         serialized_charity = CharitySerializer(data=request.data)
-        # Next, we check whether the data passed in the body of the request is valid
-        # It will check this data against the model
-        # This will return a boolean, true if the data is valid, false if not
         serialized_charity.is_valid(raise_exception=True)
-        # If the data is valid, we save it
         serialized_charity.save()
-        # Finally we send back the created object
         return Response(serialized_charity.data, 201)
 
 
@@ -43,26 +36,15 @@ class CharityDetailView(APIView):
         charity = get_object_or_404(Charity, pk=pk)
         serialized_charity = CharitySerializer(charity)
         return Response(serialized_charity.data)
-    
-        # try:
-        #     charity = Charity.objects.get(pk=pk)
-        #     serialized_charity = CharitySerializer(charity)
-        #     return Response(serialized_charity.data)
-        # except Charity.DoesNotExist as e:
-        #     print('Not Found')
-        #     return Response({ 'detail': 'Charity not found' }, 404)
-        # except:
-        #     print('An error occurred')
-        #     return Response('Something went wrong', 500)
 
 
     # Update
     def put(self, request, pk):
-        charity = get_object_or_404(Charity, pk=pk) # Find the existing charity in the DB
-        serialized_charity = CharitySerializer(charity, data=request.data, partial=True) # Pass the existing instance into the serializer with the request.data
-        serialized_charity.is_valid(raise_exception=True) # We validate request.data
-        serialized_charity.save() # If valid, we save the changes to the database
-        return Response(serialized_charity.data) # Send a response to the client
+        charity = get_object_or_404(Charity, pk=pk)
+        serialized_charity = CharitySerializer(charity, data=request.data, partial=True)
+        serialized_charity.is_valid(raise_exception=True)
+        serialized_charity.save()
+        return Response(serialized_charity.data)
 
     # Delete
     def delete(self, request, pk):
