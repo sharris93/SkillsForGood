@@ -1,0 +1,122 @@
+[
+  {
+    "model": "charities.charity",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "name": "Doctors Without Borders",
+      "mission_statement": "Provides emergency medical care to people affected by conflict, epidemics, disasters, or exclusion from healthcare.",
+      "website_url": "https://www.doctorswithoutborders.org",
+      "contact_email": "info@newyork.msf.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "name": "International Rescue Committee",
+      "mission_statement": "Responds to the world's worst humanitarian crises and helps people to survive, recover, and gain control of their future.",
+      "website_url": "https://www.rescue.org",
+      "contact_email": "info@rescue.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 3,
+    "fields": {
+      "owner": 3,
+      "name": "Oxfam",
+      "mission_statement": "Works to end the injustice of poverty through development programs, public education, and emergency assistance.",
+      "website_url": "https://www.oxfam.org",
+      "contact_email": "enquiries@oxfam.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 4,
+    "fields": {
+      "owner": 1,
+      "name": "CARE International",
+      "mission_statement": "Fights global poverty and provides disaster relief with a focus on empowering women and girls.",
+      "website_url": "https://www.care-international.org",
+      "contact_email": "info@care.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 5,
+    "fields": {
+      "owner": 1,
+      "name": "Mercy Corps",
+      "mission_statement": "Helps people in the world's toughest places survive the crises they confront and turn them into opportunities for progress.",
+      "website_url": "https://www.mercycorps.org",
+      "contact_email": "ask@mercycorps.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 6,
+    "fields": {
+      "owner": 3,
+      "name": "Save the Children",
+      "mission_statement": "Supports children in crisis with health care, education, and protection from harm.",
+      "website_url": "https://www.savethechildren.org",
+      "contact_email": "supportercare@savethechildren.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 7,
+    "fields": {
+      "owner": 1,
+      "name": "World Vision",
+      "mission_statement": "A Christian humanitarian organization dedicated to working with children, families, and communities to overcome poverty and injustice.",
+      "website_url": "https://www.worldvision.org",
+      "contact_email": "info@worldvision.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 8,
+    "fields": {
+      "owner": 1,
+      "name": "Red Cross",
+      "mission_statement": "Provides emergency assistance, disaster relief, and education in communities around the world.",
+      "website_url": "https://www.redcross.org",
+      "contact_email": "info@redcross.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 9,
+    "fields": {
+      "owner": 3,
+      "name": "Action Against Hunger",
+      "mission_statement": "Combats hunger and provides access to clean water, food, and healthcare for vulnerable communities worldwide.",
+      "website_url": "https://www.actionagainsthunger.org",
+      "contact_email": "info@actionagainsthunger.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  },
+  {
+    "model": "charities.charity",
+    "pk": 10,
+    "fields": {
+      "owner": 1,
+      "name": "Relief International",
+      "mission_statement": "Partners with communities impacted by conflict, climate change, and disaster to deliver life-saving aid and build resilience.",
+      "website_url": "https://www.ri.org",
+      "contact_email": "info@ri.org",
+      "created_at": "2025-05-29T12:39:37.165Z"
+    }
+  }
+]

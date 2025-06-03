@@ -1,0 +1,30 @@
+[
+{
+  "model": "skills.skill",
+  "pk": 2,
+  "fields": {
+    "name": "Conflict Resolution"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 3,
+  "fields": {
+    "name": "Project Management"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 4,
+  "fields": {
+    "name": "Crisis Intervention"
+  }
+},
+{
+  "model": "skills.skill",
+  "pk": 5,
+  "fields": {
+    "name": "Mental Health Support"
+  }
+}
+]

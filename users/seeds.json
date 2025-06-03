@@ -1,0 +1,92 @@
+[
+{
+  "model": "users.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$6QCnwx5XW1jqCJmSDTO51M$AdZ7wS1D2DW0eTZxFe3P6lL/lRInslS8ptolorOaj0E=",
+    "last_login": "2025-05-30T12:56:29Z",
+    "is_superuser": true,
+    "username": "sam",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-29T09:59:07Z",
+    "email": "sam@email.com",
+    "bio": "",
+    "location": "London",
+    "groups": [],
+    "user_permissions": [],
+    "skills": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "users.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$E5DQgO6BAeQLhx4jGyBD86$GL1HqHHrtlCWQZj2GSyEtltF5T1pIwuH94Ca87xHPkQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sam321",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-30T10:39:12.843Z",
+    "email": "sam321@email.com",
+    "bio": null,
+    "location": "London, UK",
+    "groups": [],
+    "user_permissions": [],
+    "skills": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$FPIMNFIQkMwAsduPX9nm9K$NFEyM+kGXdqx1HnMt3dZWT1lt1CHDTJZ6QvK1eepTFE=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sam111",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-30T10:41:39.060Z",
+    "email": "sam111@email.com",
+    "bio": null,
+    "location": "London, UK",
+    "groups": [],
+    "user_permissions": [],
+    "skills": []
+  }
+},
+{
+  "model": "users.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$m2gVEByLeXWLBPgfF4xy7b$+UHA74E5jOz3W3BtPK437K03dvlUieFrbcqZ+0xCDs8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "sam444",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-30T11:32:24Z",
+    "email": "sam444@email.com",
+    "bio": "",
+    "location": "London, UK",
+    "groups": [],
+    "user_permissions": [],
+    "skills": [
+      5,
+      2
+    ]
+  }
+}
+]
