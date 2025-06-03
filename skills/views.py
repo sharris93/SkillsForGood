@@ -1,8 +1,7 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from utils.permissions import IsAdminOrReadOnly
 from .models import Skill
-from .serializers import SkillSerializer
+from .serializers.common import SkillSerializer
 
 # List view
 class SkillListView(ListCreateAPIView):

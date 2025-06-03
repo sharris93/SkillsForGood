@@ -1,5 +1,6 @@
 from .models import Opportunity
-from .serializers import OpportunitySerializer, PopulatedOpportunitySerializer
+from .serializers.common import OpportunitySerializer
+from .serializers.populated import PopulatedOpportunitySerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -8,7 +9,6 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 # Path: /api/opportunities/
 class OpportunityListView(ListCreateAPIView):
     queryset = Opportunity.objects.all()
-    serializer_class = OpportunitySerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
@@ -27,6 +27,9 @@ class OpportunityDetailView(RetrieveUpdateDestroyAPIView):
     # Inside, we need to return a serializer class to be used
     # The method allows us to select the serializer class dynamically rather that setting it statically
     def get_serializer_class(self):
+        # If the request has a method of GET, we want to use the populated serializer to display the charity as an object
         if self.request.method == 'GET':
             return PopulatedOpportunitySerializer
+        
+        # If the request is anything other than a GET, we want to use the common serializer, with the int representation of the charity
         return OpportunitySerializer

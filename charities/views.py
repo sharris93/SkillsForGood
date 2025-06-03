@@ -3,8 +3,11 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from utils.permissions import IsOwnerOrReadOnly
 from .models import Charity
-from .serializers import CharitySerializer, PopulatedCharitySerializer
 from django.shortcuts import get_object_or_404
+
+#  Serializers
+from .serializers.common import CharitySerializer
+from .serializers.populated import PopulatedCharitySerializer
 
 # Path associated with this class: /api/charities/
 # Methods accepted: GET, POST

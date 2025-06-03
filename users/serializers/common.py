@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from .models import User
+from ..models import User
 from django.contrib.auth import password_validation
 
 
+# This serializer is used for authentication
 class UserSerializer(serializers.ModelSerializer):
     # Define fields as write only
     password = serializers.CharField(write_only=True)
@@ -28,26 +28,8 @@ class UserSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
     
 
+# This serializer will be used when populating the owner on a charity
 class UsernameSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username']
-
-
-# * TOKEN SERIALIZER 
-
-
-class CustomTokenSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Customise the payload (claims)
-        token['user'] = {
-            'id': user.id,
-            'username': user.username,
-            'location': user.location
-        }
-
-        # Return the modified token
-        return token
