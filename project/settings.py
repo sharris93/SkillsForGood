@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from datetime import timedelta
 from pathlib import Path
 import environ
@@ -62,15 +62,34 @@ REST_FRAMEWORK = {
     )
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:5174",
-]
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1'] # local frontend urls without protocols
+
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:5173", # Local frontend url
+    ]
+
+    CSRF_TRUSTED_ORIGINS = [
+        "http://127.0.0.1:8000", # Local backend url
+        "http://localhost:8000" # localhost for good measure
+    ]
+
+else:
+    ALLOWED_HOSTS = ['your-backend.herokuapp.com'] # don't include the protocol (https://)
+
+    CORS_ALLOWED_ORIGINS = [
+        env('DEPLOYED_FRONTEND_URL'), # Deployed frontend url only
+    ]
+
+    CSRF_TRUSTED_ORIGINS = [
+        env('DEPLOYED_BACKEND_URL'), # Deployed backend url only
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -153,7 +172,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# This production code might break development mode, so we check whether we're in DEBUG mode before setting the STATICFILES_STORAGE
+if not DEBUG:
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
