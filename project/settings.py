@@ -75,7 +75,7 @@ if DEBUG:
     ]
 
 else:
-    ALLOWED_HOSTS = [env('DEPLOYED_BACKEND_URL').replace('https://')] # don't include the protocol (https://)
+    ALLOWED_HOSTS = [env('DEPLOYED_BACKEND_URL').replace('https://', '')] # don't include the protocol (https://)
 
     CORS_ALLOWED_ORIGINS = [
         env('DEPLOYED_FRONTEND_URL'), # Deployed frontend url only
