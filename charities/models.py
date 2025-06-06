@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 class Charity(models.Model):
     owner = models.ForeignKey(
@@ -11,6 +12,7 @@ class Charity(models.Model):
     website_url = models.URLField()
     contact_email = models.EmailField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to='django_test/', blank=True, storage=MediaCloudinaryStorage)
 
     def __str__(self):
         return self.name
